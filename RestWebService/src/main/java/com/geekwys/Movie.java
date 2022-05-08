@@ -1,7 +1,10 @@
 package com.geekwys;
 
+/**
+ * @author shem.mwangi
+ * @date 7th May 2022
+ */
 public class Movie {
-
     private Long id;
     private String title;
 

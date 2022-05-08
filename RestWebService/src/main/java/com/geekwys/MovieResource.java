@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author shem.mwangi
+ * @date 7th May 2022
+ */
 @Path("/movies")
 public class MovieResource {
     public static List<Movie> movies = new ArrayList<>();
