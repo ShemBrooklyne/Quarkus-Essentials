@@ -1,0 +1,119 @@
+---
+openapi: 3.0.3
+info:
+  title: Movie API
+  description: Movie Application
+  license:
+    name: MIT
+    url: http://localhost:8080
+  version: first release
+tags:
+- name: movies
+  description: Movies
+- name: Movie Resource
+  description: Movies REST APIs
+paths:
+  /movies:
+    get:
+      tags:
+      - Movie Resource
+      summary: Get Movies
+      description: Get all movies from movie list
+      operationId: getMovies
+      responses:
+        "200":
+          description: Operation completed
+          content:
+            application/json: {}
+    post:
+      tags:
+      - Movie Resource
+      summary: Create Movie
+      description: Create new movie to add to list of movies
+      operationId: createMovie
+      requestBody:
+        description: Movie to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Movie'
+        required: true
+      responses:
+        "201":
+          description: Movie created
+          content:
+            application/json: {}
+  /movies/size:
+    get:
+      tags:
+      - Movie Resource
+      summary: Count Movies
+      description: Size of the list of movies
+      operationId: countMovies
+      responses:
+        "200":
+          description: Operation completed
+          content:
+            text/plain: {}
+  /movies/{id}:
+    delete:
+      tags:
+      - Movie Resource
+      summary: Delete Existing Movie
+      description: Delete existing movie in movies list
+      operationId: deleteMovie
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "204":
+          description: Movie deleted
+          content:
+            application/json: {}
+        "400":
+          description: Movie bot valid
+          content:
+            application/json: {}
+  /movies/{id}/{title}:
+    put:
+      tags:
+      - Movie Resource
+      summary: Update Existing Movie
+      description: Update existing movie in movies list
+      operationId: updateMovie
+      parameters:
+      - name: id
+        in: path
+        description: Movie ID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: title
+        in: path
+        description: Movie Title
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Movie updated
+          content:
+            application/json: {}
+components:
+  schemas:
+    Movie:
+      description: Movie model representation
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        title:
+          type: string
